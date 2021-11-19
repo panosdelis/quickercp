@@ -1,0 +1,97 @@
+Δελης Παναγιωτης sdi1700029 
+
+Project4 Λειτουργικα Συστηματα
+
+Η εργασια αποτελείται απο 9 αρχεια:
+
+-4 Source files: quic.c basicFunctions.c recursiveCopyDelete.c outputFunctions.c
+-3 Header files: basicFunctions.h recursiveCopyDelete.h outputFunctions.h
+-1 Makefile
+-1 README: Αυτο το αρχειο.
+
+Για να εκτελεσουμε κανουμε make για το compile και εχουμε το εκτελεσιμο quic:
+
+Εκτελείται ως:
+Χωρις flags:
+	./quic /home/panos/Downloads beta
+
+Με καποιο/α flags:
+	./quic -d /home/panos/Downloads beta
+
+Με ολα τα flags:
+	./quic -v -d -l beta /media/panos/USBstick
+
+Τα flags πρεπει να ειναι παντα μετα το quic και πριν τους φακελους δηλαδη στις 1-2-3 θεσεις μεταβλητων, και δεν εχει σημασια η σειρα τους.
+
+Το προγραμμα παντα μπορει να διαχειριστει soft link φακελων και hardlink αρχειων δηλαδη αν δωσουμε ενα directory που εχει soft hard links χωρις το -l flag θα αντιγραφουν τα κανονικα αρχεια στον destination directory.
+
+Το flag -l λειτουργει ως: Εφοσον οι δυο φακελοι ειναι στον ιδιο δισκο και υπαρχει και το flag ολοι οι φακελοι και τα αρχεια θα αντιγραφουν με links.
+
+Το flag -d διαγραφει οτι υπαρχει στον destfolder που δεν υπαρχει στον origin.
+
+Το flag -v απλα επιτρεπει να τυπωνονται μηνυματα κατα τη διαρκεια της αντιγραφης.
+
+
+Η εργασια εχει φτιαχτει και δοκιμαστει σε Ubuntu 18.04 και στα linux της σχολης. 
+
+Απο κατω εχουμε ελεγχους και τα αποτελεσματα αυτων σε συγκριση με τη cp με χρηση της time.
+
+//EMPTY DESTINATION FOLDER
+panos@Onepiece:~/Documents/OS/project4$ time cp -r /home/panos/Downloads beta
+
+real	0m0.755s
+user	0m0.005s
+sys	0m0.563s
+panos@Onepiece:~/Documents/OS/project4$ time ./quic /home/panos/Downloads beta
+
+there are 403 files/directories in the hierarchy
+number of entities copied is 403
+copied 1,104,716,973 bytes in 1,184 sec at 933,037,983.95 bytes/sec
+
+real	0m0.790s
+user	0m0.027s
+sys	0m0.535s
+//END EMPTY DESTINATION FOLDER
+
+
+//SOME FILES-FOLDERS WERE DELETED IN DESTINATION FOLDER
+panos@Onepiece:~/Documents/OS/project4$ time ./quic /home/panos/Downloads beta
+
+there are 403 files/directories in the hierarchy
+number of entities copied is 89
+copied 3,999,311 bytes in 0,778 sec at 5,140,502.57 bytes/sec
+
+real	0m0.082s
+user	0m0.032s
+sys	0m0.050s
+
+panos@Onepiece:~/Documents/OS/project4$ time cp -r /home/panos/Downloads beta
+
+real	0m0.811s
+user	0m0.014s
+sys	0m0.567s
+panos@Onepiece:~/Documents/OS/project4$ 
+//END SOME FILES-FOLDERS WERE DELETED IN DESTINATION FOLDER
+
+//COPY TO USB ALL FLAGS
+panos@Onepiece:~/Documents/OS/project4$ time ./quic -v -d -l beta /media/panos/USBstick
+/media/panos/USBstick/basicFunctions.h
+/media/panos/USBstick/basicFunctions.c
+/media/panos/USBstick/README
+/media/panos/USBstick/recursiveCopyDelete.c
+/media/panos/USBstick/outputFunctions.h
+/media/panos/USBstick/recursuveCopyDelete.h
+/media/panos/USBstick/outputFunctions.c
+/media/panos/USBstick/quic.c
+/media/panos/USBstick/Makefile
+
+there are 9 files/directories in the hierarchy
+number of entities copied is 9
+copied 23,903 bytes in 0,882 sec at 27,100.91 bytes/sec
+
+real	0m0.089s
+user	0m0.004s
+sys	0m0.000s
+panos@Onepiece:~/Documents/OS/project4$ 
+//END COPY TO USB ALL FLAGS
+
