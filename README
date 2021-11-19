@@ -7,7 +7,8 @@ The project consists of 9 files:
 -1 Makefile
 -1 README: This file.
 
-This is a simple program coping the components of one dir to another in any disk. The improvement from a simple copy is the check for pre existing files and does not copy those with result saving time.
+This is a simple program coping the components of one dir to another in any disk.
+The improvement from a simple copy is the check for pre existing files and does not copy those with result saving time.
 
 For the compilation we use "make" and we have the executable quic:
 
@@ -26,7 +27,8 @@ With all the flags:
 
 The flags must always be after the quic and before the folders, ie in the 1-2-3 positions of variables, and their order does not matter.
 
-The program can always manage soft link folders and hardlink files, ie if we give a directory that has soft hard links without the -l flag, the normal files in the destination directory will be copied.
+The program can always manage soft link folders and hardlink files, ie if we give a directory that has soft hard links without the -l flag,
+the normal files in the destination directory will be copied.
 
 The flag -l works as: Since the two folders are on the same disk and there is also the flag, all the folders and files will be copied with links.
 
